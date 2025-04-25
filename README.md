@@ -16,3 +16,6 @@ En el home hay 2 encuestas que inclui como dummy data para que no este vacio.
 Use router.push de expo router, cuando lo correcto es usar router.navigate porque es una app sencilla, y la verdad que con el numero de screens que tengo, respetar el orden del stack no me trae ningun beneficio, y router.push es lo mas rapido.
 Tambien se estan creando los uuid de manera aleatoria por simplicidad.
 Los estilos son un poco precarios, pero preferi concentrarme en la funcionalidad, hacer lo visual es mas facil.
+
+IMPORTANTE
+Esta app esta construida solo para el entorno mobile, no hice nada para web, asi que solo va a verse bien en emulador de android o dispositivo android (Como no tengo emulador de IOS, si se usa en un dispositivo IOS puede haber algunas diferencias de diseño)
