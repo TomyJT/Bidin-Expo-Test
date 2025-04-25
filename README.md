@@ -21,17 +21,6 @@ En caso de que no tengas en entorno de android studio configurado, aca te dejo d
  - [Variables de entorno](https://developer.android.com/tools/variables?hl=es-419)
 
 
-
-git clone <repo-url>
-cd bindin-test
-npm install
-npm run android
-
-SETUP PARA ANDROID STUDIO
-En caso de que no tengas en entorno de android studio configurado, aca te dejo dos guias que te van a servir
-https://reactnative.dev/docs/set-up-your-environment
-https://developer.android.com/tools/variables?hl=es-419
-
 ## NOTAS SOBRE LA APP 
 - Hice un simple creador de encuestas.
 - En el home hay 2 encuestas que inclui como dummy data para que no este vacio.
