@@ -31,7 +31,7 @@ const SurveyAnswers: React.FC<Props> = ({ survey }) => {
 };
 const styles = StyleSheet.create({
   surveyBlock: {
-    backgroundColor: "#FAFAFA",
+    backgroundColor: colors.bgLight,
     borderWidth: 1,
     borderColor:colors.border,
     borderRadius: 10,
@@ -49,12 +49,6 @@ const styles = StyleSheet.create({
   responseBlock: {
     padding: 8,
     borderRadius: 8,
-  },
-  responseLabel: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginBottom: 6,
-    color: colors.text,
   },
   qna: {
     marginBottom: 6,

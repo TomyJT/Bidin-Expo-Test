@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import colors from 'styles/colors';
 
 interface Props {
   onPress: () => void
@@ -9,7 +10,7 @@ interface Props {
 const BackButton: React.FC<Props> = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <AntDesign name="caretleft" size={24} color="black" />
+      <AntDesign name="caretleft" size={24} color={colors.border} />
     </TouchableOpacity>
   );
 };

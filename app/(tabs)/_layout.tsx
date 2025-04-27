@@ -1,12 +1,14 @@
 import React from 'react'
 import { Tabs } from 'expo-router'
 import { FontAwesome } from '@expo/vector-icons'
+import colors from 'styles/colors'
 
 const commonScreenOptions = {
   headerShown: false,
-  tabBarActiveTintColor: '#4A90E2',
-  tabBarInactiveTintColor: '#aaa',
+  tabBarActiveTintColor: colors.secondary,
+  tabBarInactiveTintColor: '#fff',
   tabBarHideOnKeyboard: true,
+  tabBarStyle: { backgroundColor: colors.bgLight }
 }
 
 export default function TabsLayout() {

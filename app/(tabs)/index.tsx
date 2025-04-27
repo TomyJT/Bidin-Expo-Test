@@ -45,14 +45,8 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.bgLight,
+    backgroundColor: colors.bg,
     padding: 16,
-  },
-  card: {
-    backgroundColor: colors.surface,
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 12,
   },
   title: {
     fontSize: 24,
@@ -60,14 +54,9 @@ const styles = StyleSheet.create({
     color: colors.text,
     marginVertical: 16,
   },
-  subtitle: {
-    fontSize: 14,
-    color: colors.textSub,
-    marginTop: 4,
-  },
   createButton: {
     marginTop: 16,
-    backgroundColor: colors.primary,
+    backgroundColor:colors.secondary,
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',

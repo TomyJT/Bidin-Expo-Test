@@ -65,6 +65,7 @@ export default function CreateSurveyScreen() {
         placeholder="Survey´s title"
         value={title}
         onChangeText={setTitle}
+        placeholderTextColor={colors.border}
       />
       <View style={styles.separator} />
       <Text style={styles.subHeading}>Create a question</Text>
@@ -73,6 +74,7 @@ export default function CreateSurveyScreen() {
         placeholder="Write your question"
         value={newQuestionText}
         onChangeText={setNewQuestionText}
+        placeholderTextColor={colors.border}
       />
       {newQuestionType === 'multiple' && 
         <>
@@ -81,12 +83,14 @@ export default function CreateSurveyScreen() {
             placeholder="Option A"
             value={firstOption}
             onChangeText={setFirstOption}
+            placeholderTextColor={colors.border}
             />
           <TextInput
             style={styles.input}
             placeholder="Option B"
             value={secondOption}
             onChangeText={setSecondOption}
+            placeholderTextColor={colors.border}
             />
         </>
       }
@@ -94,10 +98,13 @@ export default function CreateSurveyScreen() {
         <Picker
           selectedValue={newQuestionType}
           onValueChange={(val) => setNewQuestionType(val)}
+          style={{color: colors.border}}
+          dropdownIconColor={colors.border}
+          dropdownIconRippleColor={colors.secondary}
         >
-          <Picker.Item label="Message" value="text" />
-          <Picker.Item label="Multiple Choice" value="multiple" />
-          <Picker.Item label="Rating (1–5)" value="rating" />
+          <Picker.Item color={colors.bgLight} label="Message" value="text" />
+          <Picker.Item color={colors.bgLight} label="Multiple Choice" value="multiple" />
+          <Picker.Item color={colors.bgLight} label="Rating (1–5)" value="rating" />
         </Picker>
       </View>
       <Button
@@ -127,11 +134,14 @@ export default function CreateSurveyScreen() {
           />
         </>
       ) : <View style={{flex: 1}} />}
-      <Button
-        title="Save survey"
+      <TouchableOpacity
+        style={styles.createButton}
         onPress={onAddSurvey}
-        color={colors.primary}
-      />
+      >
+        <Text style={styles.createButtonText}>
+          Save survey
+        </Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -140,7 +150,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: colors.bgLight,
+    backgroundColor: colors.bg,
   },
   heading: {
     fontSize: 24,
@@ -156,11 +166,12 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: colors.textSub,
+    borderColor: colors.border,
     borderRadius: 6,
     padding: 8,
-    backgroundColor: colors.surface,
+    backgroundColor: colors.bgLight,
     marginBottom: 8,
+    color: '#FFFFFF'
   },
   separator: {
     height: 1,
@@ -186,5 +197,17 @@ const styles = StyleSheet.create({
     color: colors.error,
     fontWeight: '600',
     marginLeft: 16,
+  },
+  createButton: {
+    marginTop: 16,
+    backgroundColor:colors.secondary,
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  createButtonText: {
+    color: colors.surface,
+    fontWeight: '600',
+    fontSize: 16,
   },
 })

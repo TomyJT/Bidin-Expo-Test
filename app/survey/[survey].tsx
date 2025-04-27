@@ -55,6 +55,7 @@ export default function SurveyScreen() {
               placeholder="Answer"
               value={answers[question.id] || ''}
               onChangeText={(t) => handleChange(question.id, t)}
+              placeholderTextColor={colors.border}
             />
           )}
 
@@ -91,6 +92,7 @@ export default function SurveyScreen() {
               maxLength={1}
               value={answers[question.id] || ''}
               onChangeText={(t) => handleChange(question.id, t.replace(/[^1-5]/g, ''))}
+              placeholderTextColor={colors.border}
             />
           )}
         </View>
@@ -107,7 +109,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: colors.bgLight,
+    backgroundColor: colors.bg,
   },
   header: {
     width: '100%',
@@ -133,10 +135,12 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: colors.textSub,
+    borderColor: colors.border,
     borderRadius: 6,
     padding: 8,
-    backgroundColor: colors.surface,
+    backgroundColor: colors.bgLight,
+    marginBottom: 8,
+    color: '#FFFFFF'
   },
   optionButton: {
     padding: 10,
@@ -144,6 +148,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.textSub,
     marginBottom: 8,
+    backgroundColor: colors.bgLight,
   },
   optionSelected: {
     backgroundColor: colors.secondary,
@@ -158,7 +163,7 @@ const styles = StyleSheet.create({
   },
   submitBtn: {
     marginTop: 24,
-    backgroundColor: colors.primary,
+    backgroundColor:colors.secondary,
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',

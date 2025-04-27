@@ -24,9 +24,9 @@ const SurveyCard: React.FC<Props> = ({ title, subtitle, onPress }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FAFAFA",
+    backgroundColor: colors.bgLight,
     borderWidth: 1,
-    borderColor:colors.border,
+    borderColor: colors.border,
     borderRadius:10,
     padding: 16,
     width:"100%",
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width:"20%",
-    backgroundColor: colors.primary,
+    backgroundColor: colors.secondary,
     alignItems:"center",
     justifyContent:"center",
     borderRadius: 10
