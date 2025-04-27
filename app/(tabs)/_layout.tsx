@@ -8,7 +8,7 @@ const commonScreenOptions = {
   tabBarActiveTintColor: colors.secondary,
   tabBarInactiveTintColor: '#fff',
   tabBarHideOnKeyboard: true,
-  tabBarStyle: { backgroundColor: colors.bgLight }
+  tabBarStyle: { backgroundColor: colors.bgLight, height: 55 }
 }
 
 export default function TabsLayout() {

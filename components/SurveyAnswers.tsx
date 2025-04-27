@@ -4,13 +4,14 @@ import { StyleSheet, Text, View } from 'react-native';
 import colors from 'styles/colors';
 
 interface Props {
-  survey: Survey
+  survey: Survey,
 }
 
 const SurveyAnswers: React.FC<Props> = ({ survey }) => {
   return (
     <View key={survey.id} style={styles.surveyBlock}>
       <Text style={styles.surveyTitle}>{survey.title}</Text>
+      <View style={styles.separator} />
       {survey.responses.map((response, index) => (
         <View key={index} style={styles.responseBlock}>
           {response.map((answer) => {
@@ -18,7 +19,7 @@ const SurveyAnswers: React.FC<Props> = ({ survey }) => {
             return (
               <View key={answer.questionId} style={styles.qna}>
                 <Text style={styles.question}>
-                  {question?.text || 'Pregunta desconocida'}
+                  {'* ' + question?.text || 'Unknown question'}
                 </Text>
                 <Text style={styles.answer}>{answer.response}</Text>
               </View>
@@ -62,6 +63,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.textSub,
     marginLeft: 8,
+  },
+  separator: {
+    height: 1,
+    backgroundColor: colors.textSub,
+    marginVertical: 8,
   },
 })
 
