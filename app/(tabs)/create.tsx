@@ -1,4 +1,3 @@
-// app/(tabs)/create.tsx
 import React, { useState } from 'react'
 import {
   View,
@@ -22,39 +21,60 @@ export default function CreateSurveyScreen() {
   const [title, setTitle] = useState('')
   const [newQuestionText, setNewQuestionText] = useState('')
   const [newQuestionType, setNewQuestionType] = useState<'text'|'multiple'|'rating'>('text')
-  const [firstOption, setFirstOption] = useState("")
-  const [secondOption, setSecondOption] = useState("")
+  const [multipleOptions, setMultipleOptions] = useState(['', ''])
   const [questions, setQuestions] = useState<Question[]>([])
 
   const addQuestion = () => {
     if (!newQuestionText.trim()) return
+    const opts = newQuestionType === 'multiple'
+      ? multipleOptions.filter(o => o.trim() !== '')
+      : undefined
+
     const question: Question = {
       id: uuidv4(),
       text: newQuestionText.trim(),
       type: newQuestionType,
-      options: newQuestionType === 'multiple'
-        ? [firstOption, secondOption] 
-        : undefined,
+      options: opts,
     }
-    setQuestions((prev) => [...prev, question])
+
+    setQuestions(prev => [...prev, question])
     setNewQuestionText('')
     setNewQuestionType('text')
+    setMultipleOptions(['', ''])
   }
+
   const removeQuestion = (id: string) => {
     setQuestions((prev) => prev.filter((q) => q.id !== id))
   }
+
   const resetSurvey = () => {
     setTitle('')
     setNewQuestionText('')
     setNewQuestionType('text')
     setQuestions([])
   }
+
   const onAddSurvey = () => {
     if (title && questions.length > 0) {
       addSurvey(title.trim(), questions)
       resetSurvey()
       router.push('/(tabs)')
     }
+  }
+
+  const handleMultipleOptions = (text: string, index: number) => {
+    const updated = [...multipleOptions]
+    updated[index] = text
+    setMultipleOptions(updated)
+  }
+
+  const addOption = () => {
+    setMultipleOptions(prev => [...prev, ''])
+  }
+
+  const removeLastOption = () => {
+    if (multipleOptions.length <= 2) return
+    setMultipleOptions(prev => prev.slice(0, -1))
   }
 
   return (
@@ -78,20 +98,24 @@ export default function CreateSurveyScreen() {
       />
       {newQuestionType === 'multiple' && 
         <>
-          <TextInput
+          {multipleOptions.map((option, index) => (
+            <TextInput
             style={styles.input}
-            placeholder="Option A"
-            value={firstOption}
-            onChangeText={setFirstOption}
+            placeholder={`Option ${index + 1}`}
+            value={option}
+            onChangeText={text => handleMultipleOptions(text, index)}
             placeholderTextColor={colors.border}
+            key={index}
             />
-          <TextInput
-            style={styles.input}
-            placeholder="Option B"
-            value={secondOption}
-            onChangeText={setSecondOption}
-            placeholderTextColor={colors.border}
-            />
+          ))}
+          <View style={styles.optionButtons}>
+          <TouchableOpacity style={styles.addOptionButton} onPress={addOption}>
+            <Text style={styles.addOptionText}>Add option +</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.addOptionButton} onPress={removeLastOption}>
+            <Text style={styles.addOptionText}>Remove option -</Text>
+          </TouchableOpacity>
+          </View>
         </>
       }
       <View style={[styles.input, { padding: 0 }]}>
@@ -209,5 +233,24 @@ const styles = StyleSheet.create({
     color: colors.surface,
     fontWeight: '600',
     fontSize: 16,
+  },
+  optionButtons: {
+    width: '100%',
+    display: 'flex',
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-between',
+    marginBottom: 10
+  },
+  addOptionButton:{
+    width: '30%',
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'center',
+  },
+  addOptionText:{
+    color: colors.secondary,
+    paddingVertical: 5,
+    fontSize:18
   },
 })

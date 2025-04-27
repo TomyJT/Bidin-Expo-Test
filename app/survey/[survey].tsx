@@ -15,7 +15,6 @@ import BackButton from '@components/BackButton'
 
 export default function SurveyScreen() {
   const router = useRouter()
-  const surveys = useSurveyStore((s) => s.surveys)
   const submitResponse = useSurveyStore((s) => s.submitResponse)
   const [answers, setAnswers] = useState<Record<string, string>>({})
 
@@ -62,7 +61,7 @@ export default function SurveyScreen() {
           {question.type === 'multiple' && question.options && (
             <FlatList
               data={question.options}
-              keyExtractor={(opt) => opt}
+              keyExtractor={(_, index) => index.toString()}
               renderItem={({ item }) => (
                 <TouchableOpacity
                   style={[
